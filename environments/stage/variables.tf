@@ -18,7 +18,7 @@ variable "aws_region" {
 
 variable "environment" {
   type        = "string"
-  default     = "dev"
+  default     = "stage"
   description = "Current environment"
 }
 

@@ -7,7 +7,7 @@ terraform {
   backend "s3" {
     profile = "claytondblythe"
     bucket  = "claytondblythe-test-app-terraform"
-    key     = "dev.tfstate"
+    key     = "prod.tfstate"
     region  = "us-west-2"
   }
 }

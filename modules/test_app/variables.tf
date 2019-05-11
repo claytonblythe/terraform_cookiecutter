@@ -1,6 +1,6 @@
 # Environment settings
-variable environment {}
-
+variable app_name {}
 variable aws_profile {}
 variable aws_region {}
-variable app_name {}
+variable environment {}
+variable hyphenated_app_name {}
