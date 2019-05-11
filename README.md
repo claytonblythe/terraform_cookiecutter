@@ -8,3 +8,7 @@ depend on the branch that is merged to, also allowing you to manually kick off b
 
 Right now I have setup my AWS credentials to auto-deploy changes to terraform infrastructure-as-code into development environment, staging environment manually when a pull request/ commit is made to master branch.
 
+### Main components
+- AWS Terraform remote state infrastructure using serverless + Terraform
+- Gitlab CI best practices
+- Gitlab + Slack Build/Notifications Integration
