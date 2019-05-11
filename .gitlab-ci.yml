@@ -54,7 +54,9 @@ test_prod:
     - terraform init
     - terraform plan
   when: manual
-  only: release
+  only:
+    refs:
+      - release
 
 deploy_dev:
   stage: deploy
@@ -87,7 +89,9 @@ deploy_staging:
     - terraform plan
     - terraform apply
   when:  manual
-  only: master
+  only:
+    refs:
+      - master
 
 deploy_staging_debug:
   stage: deploy
@@ -102,6 +106,8 @@ deploy_staging_debug:
   only:
     variables:
       - $DEBUG
+    refs:
+      - master
 
 deploy_prod:
   stage: deploy
@@ -112,4 +118,6 @@ deploy_prod:
     - terraform plan
     - terraform apply
   when:  manual
-  only: release
+  only:
+    refs:
+      - release
