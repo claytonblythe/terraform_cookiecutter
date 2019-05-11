@@ -56,19 +56,6 @@ test_prod:
   when: manual
   only: release
 
-test_prod_debug:
-  stage: test
-  script:
-    - terraform --version
-    - cd environments/prod
-    - terraform init
-    - terraform plan
-  only:
-    - release
-    variables:
-      - $DEBUG
-  when: manual
-
 deploy_dev:
   stage: deploy
   script:
@@ -113,7 +100,6 @@ deploy_staging_debug:
     - terraform apply
   when: manual
   only:
-    - master
     variables:
       - $DEBUG
 
