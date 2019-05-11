@@ -65,7 +65,7 @@ deploy_dev:
     - cd environments/dev
     - terraform init
     - terraform plan
-    - terraform apply
+    - terraform apply -auto-approve
 
 deploy_dev_debug:
   stage: deploy
@@ -75,7 +75,7 @@ deploy_dev_debug:
     - cd environments/dev
     - terraform init
     - terraform plan
-    - terraform apply
+    - terraform apply -auto-approve
   only:
     variables:
       - $DEBUG
@@ -87,7 +87,7 @@ deploy_staging:
     - cd environments/stage
     - terraform init
     - terraform plan
-    - terraform apply
+    - terraform apply -auto-approve
   when:  manual
   only:
     refs:
@@ -101,7 +101,7 @@ deploy_staging_debug:
     - cd environments/stage
     - terraform init
     - terraform plan
-    - terraform apply
+    - terraform apply -auto-approve
   when: manual
   only:
     variables:
@@ -116,7 +116,7 @@ deploy_prod:
     - cd environments/prod
     - terraform init
     - terraform plan
-    - terraform apply
+    - terraform apply -auto-approve
   when:  manual
   only:
     refs:
