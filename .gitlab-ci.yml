@@ -1,11 +1,16 @@
 image: hashicorp/terraform:latest
 
+
+before_script:
+  - rm -rf .terraform
+  - terraform --version
+  - echo $(pwd)
+  - terraform init
+
 stages:
   - plan
-  - apply
 
 plan:
   stage: plan
   script:
     - terraform init
-  when: always
