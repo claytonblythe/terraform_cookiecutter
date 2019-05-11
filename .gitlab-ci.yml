@@ -4,25 +4,24 @@ image:
 
 stages:
   - test
-  - init
-  - plan
-  - apply
+  - deploy
 
 test:
   stage: test
   script:
     - terraform --version
+    - export TF_LOG=TRACE
     - cd environments/dev
+    - terraform init
+    - terraform plan
 
-init:
-  stage: init
-  script: terraform init
-
-plan:
-  stage: plan
-  script: terraform plan
-
-apply:
-  stage: apply
-  script: terraform apply
+deploy_dev:
+  stage: deploy
+  script:
+    - terraform --version
+    - export TF_LOG=TRACE
+    - cd environments/dev
+    - terraform init
+    - terraform plan
+    - terraform apply
 
