@@ -56,7 +56,7 @@ test_prod:
   when: manual
   only:
     refs:
-      - master
+      - release
 
 deploy_dev:
   stage: deploy
@@ -91,7 +91,7 @@ deploy_staging:
   when:  manual
   only:
     refs:
-      - master
+      - release
 
 deploy_staging_debug:
   stage: deploy
@@ -107,7 +107,7 @@ deploy_staging_debug:
     variables:
       - $DEBUG
     refs:
-      - master
+      - release
 
 deploy_prod:
   stage: deploy
@@ -120,4 +120,4 @@ deploy_prod:
   when:  manual
   only:
     refs:
-      - master
+      - release
