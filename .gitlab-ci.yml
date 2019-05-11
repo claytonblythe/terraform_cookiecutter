@@ -2,16 +2,27 @@ image:
   name: hashicorp/terraform:light
   entrypoint: [""]
 
-before_script:
-  - rm -rf .terraform
-  - terraform --version
-  - echo $(pwd)
-  - terraform init
-
 stages:
+  - test
+  - init
   - plan
+  - apply
+
+test:
+  stage: test
+  script:
+    - terraform --version
+    - cd environments/dev
+
+init:
+  stage: init
+  script: terraform init
 
 plan:
   stage: plan
-  script:
-    - terraform init
+  script: terraform plan
+
+apply:
+  stage: apply
+  script: terraform apply
+
