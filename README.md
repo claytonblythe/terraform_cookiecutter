@@ -12,3 +12,9 @@ Right now I have setup my AWS credentials to auto-deploy changes to terraform in
 - AWS Terraform remote state infrastructure using serverless + Terraform
 - Gitlab CI best practices
 - Gitlab + Slack Build/Notifications Integration
+
+
+### To-Do
+- Think about release cycle deployment stages, release version tagging, reverting changes with state
+- Better Slack integration?
+- Build & Tests for project code in separate directory?
