@@ -7,21 +7,5 @@ stages:
 plan:
   stage: plan
   script:
-    - echo $(pwd)
-    - echo $(ls)
-    - cd environments/dev
-    - terraform init -backend=true -get=true -input=false
-    - terraform plan -out planfile
+    - terraform init
   when: always
-  artifacts:
-    paths:
-      - planfile
-
-apply:
-  stage: apply
-  script:
-    - terraform init -backend=true -get=true -input=false
-    - terraform apply
-  when: manual
-  dependencies:
-   - plan
