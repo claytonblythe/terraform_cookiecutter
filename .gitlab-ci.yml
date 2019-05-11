@@ -4,14 +4,11 @@ stages:
   - plan
   - apply
 
-cache:
-  paths:
-    - .terraform
-  key: "$CI_BUILD_REPO"
-
 plan:
   stage: plan
   script:
+    - echo $(pwd)
+    - echo $(ls)
     - cd environments/dev
     - terraform init -backend=true -get=true -input=false
     - terraform plan -out planfile
