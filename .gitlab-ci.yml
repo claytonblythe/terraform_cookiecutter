@@ -1,0 +1,30 @@
+image: hashicorp/terraform:latest
+
+stages:
+  - plan
+  - apply
+
+cache:
+  paths:
+    - .terraform
+  key: "$CI_BUILD_REPO"
+
+plan:
+  stage: plan
+  script:
+    - cd environments/dev
+    - terraform init -backend=true -get=true -input=false
+    - terraform plan -out planfile
+  when: always
+  artifacts:
+    paths:
+      - planfile
+
+apply:
+  stage: apply
+  script:
+    - terraform init -backend=true -get=true -input=false
+    - terraform apply
+  when: manual
+  dependencies:
+   - plan
