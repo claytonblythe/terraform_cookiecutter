@@ -91,6 +91,7 @@ deploy_staging:
   when:  manual
   only:
     refs:
+      - master
       - release
 
 deploy_staging_debug:
