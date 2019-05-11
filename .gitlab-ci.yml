@@ -6,16 +6,54 @@ stages:
   - test
   - deploy
 
-test:
+test_dev:
   stage: test
   script:
     - terraform --version
-    - export TF_LOG=TRACE
     - cd environments/dev
     - terraform init
     - terraform plan
 
+test_dev_debug:
+  stage: test
+  script:
+    - terraform --version
+    - cd environments/dev
+    - terraform init
+    - terraform plan
+  only:
+    variables:
+      - $DEBUG
+
+test_stage:
+  stage: test
+  script:
+    - terraform --version
+    - cd environments/stage
+    - terraform init
+    - terraform plan
+
+test_stage_debug:
+  stage: test
+  script:
+    - terraform --version
+    - cd environments/stage
+    - terraform init
+    - terraform plan
+  only:
+    variables:
+      - $DEBUG
+
 deploy_dev:
+  stage: deploy
+  script:
+    - terraform --version
+    - cd environments/dev
+    - terraform init
+    - terraform plan
+    - terraform apply
+
+deploy_dev_debug:
   stage: deploy
   script:
     - terraform --version
@@ -24,4 +62,16 @@ deploy_dev:
     - terraform init
     - terraform plan
     - terraform apply
+  only:
+    variables:
+      - $DEBUG
 
+deploy_staging:
+  stage: deploy
+  script:
+    - terraform --version
+    - cd environments/stage
+    - terraform init
+    - terraform plan
+    - terraform apply
+  when:  manual
